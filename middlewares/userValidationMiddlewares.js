@@ -26,5 +26,5 @@ exports.registrationValidations = [
 exports.loginValidations = [
   checkEmail(),
   checkPassword(),
-  //createHandleResults('Incorrect login data'),
+  createHandleResults('Incorrect login data'),
 ]
