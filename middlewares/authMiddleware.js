@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken')
 
-const authMiddleware = (req, res, next) => {
+exports.auth = (req, res, next) => {
   if (req.method === 'OPTIONS') {
     return next()
   }
@@ -20,5 +20,3 @@ const authMiddleware = (req, res, next) => {
     resNoAuthMessage()
   }
 }
-
-module.exports = authMiddleware

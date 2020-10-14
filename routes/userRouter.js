@@ -1,14 +1,14 @@
 const express = require('express')
 
-const userValidationMiddlewares = require('../middlewares/userValidationMiddlewares')
+const userValidations = require('../validations/userValidations')
 const userController = require('../controllers/userController')
 
 const userRouter = express.Router()
 
 const { registration, login } = userController
-const { registrationValidations, loginValidations } = userValidationMiddlewares
+const { registrationValidation, loginValidation } = userValidations
 
-userRouter.route('/registration').post(registrationValidations, registration)
-userRouter.route('/login').post(loginValidations, login)
+userRouter.route('/registration').post(registrationValidation, registration)
+userRouter.route('/login').post(loginValidation, login)
 
 module.exports = userRouter
