@@ -21,7 +21,20 @@ exports.сerateNote = async (req, res) => {
 exports.getNotes = async (req, res) => {
   try {
     const { userId } = req.user
-    const notes = await Note.find({ owner: userId })
+    const findCondition = { owner: userId }
+
+    const { period } = req.query
+    if (period) {
+      const format = (date) => new Date(...date.split('.'))
+      const [start, end] = period.split(':')
+
+      findCondition.date = {
+        $gte: format(start),
+        $lt: format(end),
+      }
+    }
+
+    const notes = await Note.find(findCondition)
     res.status(200).json(notes)
   } catch (e) {
     console.log(e)
