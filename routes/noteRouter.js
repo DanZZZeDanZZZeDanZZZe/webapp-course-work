@@ -4,7 +4,7 @@ const noteValidations = require('../validations/noteValidations')
 const { auth } = require('../middlewares/authMiddleware')
 const noteController = require('../controllers/noteController')
 
-const { createNoteValidation } = noteValidations
+const { createNoteValidation, createOptionalNoteValidation } = noteValidations
 const { getNotes, getNote, сerateNote, deleteNote, changeNote } = noteController
 
 const noteRouter = express.Router()
@@ -17,5 +17,5 @@ noteRouter
   .route('/:id')
   .get(auth, getNote)
   .delete(auth, deleteNote)
-  .put(auth, createNoteValidation, changeNote)
+  .put(auth, createOptionalNoteValidation, changeNote)
 module.exports = noteRouter

@@ -15,3 +15,10 @@ exports.createNoteValidation = [
   checkText(),
   createHandleResults('Incorrect data'),
 ]
+
+exports.createOptionalNoteValidation = [
+  checkTitle().optional(),
+  checkDate().optional(),
+  checkText().optional(),
+  createHandleResults('Incorrect data'),
+]

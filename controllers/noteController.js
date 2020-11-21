@@ -58,6 +58,8 @@ exports.changeNote = async (req, res) => {
     if (!id) throw new Error('Request does not contain ID')
 
     const oldNote = await Note.findById(id)
+    if (!oldNote)
+      throw new Error('The entry with the specified ID does not exist')
 
     const { title, text, date } = req.body
     const { owner } = oldNote
