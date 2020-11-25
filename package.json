@@ -15,9 +15,12 @@
   "author": "Artem Grankin <jyjyjyj3@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "morgan": "^1.10.0"
   },
@@ -32,5 +35,9 @@
     "eslint-plugin-react": "^7.20.6",
     "nodemon": "^2.0.4",
     "prettier": "^2.1.1"
+  },
+  "engines": {
+    "node": ">= 12.18.0",
+    "npm": ">= 6.14.0"
   }
 }
