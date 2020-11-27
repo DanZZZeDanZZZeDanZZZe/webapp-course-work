@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
+// import { connect } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   StyledHeader,
   StyledUl,
@@ -9,18 +11,21 @@ import {
 
 import { mdSize } from '../styles/screenBreakpoints'
 import { useMedia } from 'react-media'
+import { setActivity } from '../actions/headerActions'
 
 const Header = () => {
   const isLessThanMd = useMedia({ query: `(max-width: ${mdSize})` })
-  const [isActive, setActive] = useState(false)
+  const activity = useSelector((state) => state.header.activity)
+  const dispatch = useDispatch()
 
-  const changeActive = () => {
-    isLessThanMd && setActive(!isActive)
-  }
+  const changeActivity = () => dispatch(setActivity(!activity))
 
   const getLink = ([text, route]) => {
     return (
-      <li key={`li-${text}-${route}`} onClick={changeActive}>
+      <li
+        key={`li-${text}-${route}`}
+        onClick={() => isLessThanMd && changeActivity()}
+      >
         <StyledLinkComponent to={`/${route}`}>{text}</StyledLinkComponent>
       </li>
     )
@@ -28,7 +33,7 @@ const Header = () => {
 
   const linksData = [
     ['Registration', 'registration'],
-    ['Login', 'login'],
+    ['Authorization', 'authorization'],
   ]
 
   const navigation = (
@@ -41,12 +46,9 @@ const Header = () => {
     <StyledHeader>
       <h1>Calendar</h1>
       {isLessThanMd && (
-        <StyledBurgrer
-          isActive={isActive}
-          onClick={() => setActive(!isActive)}
-        />
+        <StyledBurgrer activity={activity} onClick={() => changeActivity()} />
       )}
-      {(!isLessThanMd || isActive) && navigation}
+      {(!isLessThanMd || activity) && navigation}
     </StyledHeader>
   )
 }

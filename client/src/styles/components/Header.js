@@ -83,7 +83,7 @@ const StyledBurgrer = styled.button`
   margin-right: 1rem;
   background-color: initial;
   border: 2px solid ${ghostWhite};
-  border-radius: ${({ isActive }) => `${isActive ? '100' : '5'}px`};
+  border-radius: ${({ activity }) => `${activity ? '100' : '5'}px`};
   z-index: 2;
 
   & {
