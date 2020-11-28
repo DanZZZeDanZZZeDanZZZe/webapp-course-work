@@ -74,7 +74,7 @@ const StyledUl = styled.ul`
 
 const StyledLinkComponent = styled(Link)`
   text-decoration: none;
-  color: inherit;
+  color: white;
 `
 const StyledBurgrer = styled.button`
   min-height: 1.5rem;
