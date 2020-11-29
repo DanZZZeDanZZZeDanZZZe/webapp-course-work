@@ -14,8 +14,8 @@ const loginUserThunk = (data) => async (dispatch, getState) => {
       throw new Error(data.message || 'Something went wrong')
     }
 
-    const result = await response.json()
-    dispatch(loginUser(result.token, data.email))
+    const { token, userId } = await response.json()
+    dispatch(loginUser(token, data.email, userId))
   } catch ({ message }) {
     alert(message)
   }
