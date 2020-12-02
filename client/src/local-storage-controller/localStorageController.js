@@ -9,6 +9,11 @@ const localStorageController = {
     }
   },
 
+  checkUser() {
+    const { token, email, userId } = this.getUser()
+    return token && email && userId
+  },
+
   setUser({ token, userId, email }) {
     storage.setItem('token', JSON.stringify(token))
     storage.setItem('userId', JSON.stringify(userId))

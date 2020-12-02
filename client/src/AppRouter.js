@@ -1,12 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import Authorization from './routes/Authorization'
 import Header from './components/Header'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import localStorageController from './local-storage-controller/localStorageController'
+import { loginUser } from './actions/userActions'
 
 const AppRouter = () => {
+  const dispatch = useDispatch(loginUser())
   const token = useSelector((state) => state.user.token)
-  console.log('🚀 ~ file: AppRouter.js ~ line 9 ~ AppRouter ~ token', token)
+
+  useEffect(() => {
+    if (!token && localStorageController.checkUser()) {
+      const { token, email, userId } = localStorageController.getUser()
+      dispatch(loginUser(token, email, userId))
+    }
+  })
 
   return (
     <Router>
