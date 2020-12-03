@@ -44,8 +44,22 @@ const StyledUl = styled.ul`
   padding: 0;
   margin: 0;
   font-size: 1.3rem;
-  & li:hover {
-    cursor: pointer;
+
+  & li {
+    & button {
+      background-color: inherit;
+      border: none;
+      font-size: inherit;
+      color: inherit;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+    }
   }
 
   @media only screen and (max-width: ${mdSize}) {
