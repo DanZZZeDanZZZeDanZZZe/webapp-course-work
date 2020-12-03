@@ -1,8 +1,9 @@
-import { LOGIN_USER, SET_TOKEN } from '../actions/userActions'
+import { LOGIN_USER, SET_TOKEN, LOGOUT_USER } from '../actions/userActions'
 
 const initialState = {
   token: null,
   email: null,
+  id: null,
 }
 
 export function userReducer(state = initialState, action) {
@@ -13,6 +14,11 @@ export function userReducer(state = initialState, action) {
         email: action.payload.email,
         token: action.payload.token,
         id: action.payload.id,
+      }
+    case LOGOUT_USER:
+      return {
+        ...state,
+        ...initialState,
       }
     case SET_TOKEN:
       return {

@@ -1,5 +1,4 @@
 import React from 'react'
-// import { connect } from 'react-redux'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   StyledHeader,
@@ -12,13 +11,19 @@ import {
 import { mdSize } from '../styles/screenBreakpoints'
 import { useMedia } from 'react-media'
 import { setActivity } from '../actions/headerActions'
+import { logoutUserThunk } from '../thunk-functions/userThunkFunctions'
 
 const Header = () => {
   const isLessThanMd = useMedia({ query: `(max-width: ${mdSize})` })
   const activity = useSelector((state) => state.header.activity)
+  const token = useSelector((state) => state.user.token)
   const dispatch = useDispatch()
 
   const changeActivity = () => dispatch(setActivity(!activity))
+  const logout = () => {
+    dispatch(logoutUserThunk())
+    changeActivity()
+  }
 
   const getLink = ([text, route]) => {
     return (
@@ -38,7 +43,13 @@ const Header = () => {
 
   const navigation = (
     <StyledNav>
-      <StyledUl>{linksData.map(getLink)}</StyledUl>
+      <StyledUl>
+        {token ? (
+          <button onClick={() => logout()}>Log out</button>
+        ) : (
+          linksData.map(getLink)
+        )}
+      </StyledUl>
     </StyledNav>
   )
 

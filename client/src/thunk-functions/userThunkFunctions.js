@@ -1,4 +1,4 @@
-import { loginUser } from '../actions/userActions'
+import { loginUser, logoutUser } from '../actions/userActions'
 import localStorageController from '../local-storage-controller/localStorageController'
 
 const loginUserThunk = (data) => async (dispatch, getState) => {
@@ -23,4 +23,9 @@ const loginUserThunk = (data) => async (dispatch, getState) => {
   }
 }
 
-export { loginUserThunk }
+const logoutUserThunk = (data) => (dispatch, getState) => {
+  localStorageController.removeUser()
+  dispatch(logoutUser())
+}
+
+export { loginUserThunk, logoutUserThunk }

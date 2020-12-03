@@ -19,6 +19,12 @@ const localStorageController = {
     storage.setItem('userId', JSON.stringify(userId))
     storage.setItem('email', JSON.stringify(email))
   },
+
+  removeUser() {
+    storage.removeItem('token')
+    storage.removeItem('email')
+    storage.removeItem('userId')
+  },
 }
 
 export default localStorageController
