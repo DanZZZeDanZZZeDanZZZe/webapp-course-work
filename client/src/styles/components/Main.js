@@ -4,18 +4,16 @@ import { mdSize } from '../screenBreakpoints'
 import { greaterTnanMdHeaderHeight, lessTnanMdHeaderHeight } from '../variables'
 
 const StyledMain = styled.main`
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
   background-color: ${ghostWhite};
 
   @media only screen and (max-width: ${mdSize}) {
-    top: ${lessTnanMdHeaderHeight};
+    margin-top: ${lessTnanMdHeaderHeight};
+    min-height: calc(100vh - ${lessTnanMdHeaderHeight});
   }
 
   @media only screen and (min-width: ${mdSize}) {
-    top: ${greaterTnanMdHeaderHeight};
+    margin-top: ${greaterTnanMdHeaderHeight};
+    min-height: calc(100vh - ${greaterTnanMdHeaderHeight});
   }
 `
 
