@@ -12,7 +12,7 @@ const loginUserThunk = (data) => async (dispatch, getState) => {
     })
 
     if (!response.ok) {
-      throw new Error(data.message || 'Something went wrong')
+      throw new Error(response.message || 'Something went wrong')
     }
     const { email } = data
     const { token, userId } = await response.json()

@@ -12,7 +12,7 @@ function getSimpleDateObj(dateObj) {
   return {
     year: dateObj.getFullYear(),
     month: dateObj.getMonth(),
-    date: dateObj.getDate(),
+    day: dateObj.getDate(),
   }
 }
 
