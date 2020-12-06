@@ -11,7 +11,7 @@ const getUserNotes = (start, end) => async (dispatch, getState) => {
   headers.set('Authorization', `Bearer ${token}`)
   try {
     const response = await fetch(
-      `/api/notes/list?=${getStr(start)}:${getStr(end)}`,
+      `/api/notes/list?period=${getStr(start)}:${getStr(end)}`,
       {
         headers,
       }
