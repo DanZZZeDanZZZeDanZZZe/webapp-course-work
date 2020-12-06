@@ -66,4 +66,17 @@ const StyledCalendarDays = styled.div`
   }
 `
 
-export { StyledCalendar, StyledCalendarHeaders, StyledCalendarDays }
+const StyledCalendarDay = styled.div`
+  @media only screen and (max-width: ${smSize}) {
+  }
+
+  @media only screen and (min-width: ${mdSize}) {
+  }
+`
+
+export {
+  StyledCalendar,
+  StyledCalendarHeaders,
+  StyledCalendarDays,
+  StyledCalendarDay,
+}

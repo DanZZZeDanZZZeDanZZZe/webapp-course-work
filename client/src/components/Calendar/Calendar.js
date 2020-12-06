@@ -9,6 +9,7 @@ import {
 import { mdSize } from '../../styles/screenBreakpoints'
 import { getUserNotes } from '../../thunk-functions/calendarThunkFunctions'
 import getArrOfDates from '../../utils/getArrOfDates'
+import CalendarDay from './CalendarDay'
 
 const WEEK = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
 
@@ -25,21 +26,16 @@ const Calendar = () => {
     dispatch(getUserNotes(dates[0], dates[dates.length - 1]))
   }, [])
 
-  useEffect(() => {
-    console.log(notes)
-    console.log(dates)
-  }, [notes])
-
   return (
     <StyledCalendar>
       <StyledCalendarHeaders>
-        {WEEK.map((day) => (
-          <div>{day}</div>
+        {WEEK.map((day, index) => (
+          <div key={index}>{day}</div>
         ))}
       </StyledCalendarHeaders>
       <StyledCalendarDays>
-        {dates.map((_) => (
-          <div />
+        {dates.map((date, index) => (
+          <CalendarDay key={index} date={date} />
         ))}
       </StyledCalendarDays>
     </StyledCalendar>

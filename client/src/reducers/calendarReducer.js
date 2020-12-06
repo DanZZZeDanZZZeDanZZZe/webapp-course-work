@@ -9,7 +9,11 @@ export function calendarReducer(state = initialState, action) {
     case SET_NOTES:
       return {
         ...state,
-        notes: action.payload,
+        notes: action.payload.map((note) => ({
+          ...note,
+          date: new Date(note.date),
+          id: note._id,
+        })),
       }
     default:
       return state
