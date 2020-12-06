@@ -25,6 +25,11 @@ const Calendar = () => {
     dispatch(getUserNotes(dates[0], dates[dates.length - 1]))
   }, [])
 
+  useEffect(() => {
+    console.log(notes)
+    console.log(dates)
+  }, [notes])
+
   return (
     <StyledCalendar>
       <StyledCalendarHeaders>

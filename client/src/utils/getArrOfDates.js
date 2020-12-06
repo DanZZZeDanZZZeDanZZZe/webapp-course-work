@@ -11,7 +11,7 @@ function addDays(ms, count = 1) {
 function getSimpleDateObj(dateObj) {
   return {
     year: dateObj.getFullYear(),
-    month: dateObj.getMonth(),
+    month: dateObj.getMonth() + 1,
     day: dateObj.getDate(),
   }
 }
