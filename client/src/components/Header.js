@@ -45,9 +45,12 @@ const Header = () => {
     <StyledNav>
       <StyledUl>
         {token ? (
-          <li>
-            <button onClick={() => logout()}>Log out</button>
-          </li>
+          <>
+            <li>{getLink(['Calendar', 'calendar'])}</li>
+            <li>
+              <button onClick={() => logout()}>Log out</button>
+            </li>
+          </>
         ) : (
           linksData.map(getLink)
         )}
