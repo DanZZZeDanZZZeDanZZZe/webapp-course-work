@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import localStorageController from './local-storage-controller/localStorageController'
 import { loginUser } from './actions/userActions'
 import CalendarPage from './routes/CalendarPage'
+import NotePage from './routes/NotePage'
 
 const AppRouter = () => {
   const dispatch = useDispatch(loginUser())
@@ -36,6 +37,9 @@ const AppRouter = () => {
         </Route>
         <Route path="/calendar">
           {!token ? <Redirect to="/authorization" /> : <CalendarPage />}
+        </Route>
+        <Route path="/note">
+          {!token ? <Redirect to="/authorization" /> : <NotePage />}
         </Route>
         <Route path="/authorization" exact>
           {token ? <Redirect to="/calendar" /> : <Authorization />}

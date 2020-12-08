@@ -1,10 +1,19 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Redirect, useHistory } from 'react-router-dom'
+import { setNewCurrentNote } from '../../actions/calendarActions'
 import { StyledCalendarDay } from '../../styles/components/Calendar'
+import getDateStr from '../../utils/getDateStr'
 
 const CalendarDay = ({ date }) => {
   const dispatch = useDispatch()
   const noteSelector = useSelector((state) => state.calendar.notes)
+  const history = useHistory()
+
+  const buttonClickHandler = () => {
+    history.push('/note')
+    dispatch(setNewCurrentNote(getDateStr(date)))
+  }
 
   return (
     <StyledCalendarDay>
@@ -22,6 +31,7 @@ const CalendarDay = ({ date }) => {
               <span>{note.text}</span>
             </div>
           ))}
+      <button onClick={() => buttonClickHandler()}>Add</button>
     </StyledCalendarDay>
   )
 }

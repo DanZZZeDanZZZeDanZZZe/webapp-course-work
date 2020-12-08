@@ -1,17 +1,14 @@
 import { setNotes } from '../actions/calendarActions'
+import getDateFromStr from '../utils/getDateFromStr'
+import getDateStr from '../utils/getDateStr'
 
 const getUserNotes = (start, end) => async (dispatch, getState) => {
-  const getStr = (date) => {
-    const { day, year, month } = date
-    return `${day}.${month}.${year}`
-  }
-
   const { token } = getState().user
   const headers = new Headers()
   headers.set('Authorization', `Bearer ${token}`)
   try {
     const response = await fetch(
-      `/api/notes/list?period=${getStr(start)}:${getStr(end)}`,
+      `/api/notes/list?period=${getDateStr(start)}:${getDateStr(end)}`,
       {
         headers,
       }
@@ -26,4 +23,25 @@ const getUserNotes = (start, end) => async (dispatch, getState) => {
   }
 }
 
-export { getUserNotes }
+const createNewNote = ({ title, text, time }) => async (dispatch, getState) => {
+  const { user, calendar } = getState()
+  const date = calendar.currentNote.date
+  const headers = new Headers()
+  headers.set('Authorization', `Bearer ${user.token}`)
+  headers.set('Content-Type', 'application/json')
+
+  try {
+    const response = await fetch(`/api/notes`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify({ date: getDateFromStr(date, time), text, title }),
+    })
+    if (!response.ok) {
+      throw new Error(response.message || 'Something went wrong')
+    }
+  } catch ({ message }) {
+    alert(message)
+  }
+}
+
+export { getUserNotes, createNewNote }
