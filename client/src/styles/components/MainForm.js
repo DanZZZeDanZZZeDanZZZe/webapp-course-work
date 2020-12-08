@@ -15,12 +15,17 @@ const StyledMainForm = styled.form`
     justify-content: space-between;
     width: 100%;
     padding-top: 1rem;
-    input {
+    input,
+    textarea {
       padding: 0.5rem;
       width: 70%;
       border: 3px solid ${ghostWhite};
       border-radius: 0.5rem;
       font-size: 1rem;
+    }
+
+    textarea {
+      height: 10rem;
     }
   }
 
@@ -40,6 +45,7 @@ const StyledMainForm = styled.form`
 
   @media only screen and (max-width: ${smSize}) {
     width: 100%;
+    box-sizing: border-box;
     padding: 0.5rem;
     font-size: 1rem;
 
@@ -47,7 +53,8 @@ const StyledMainForm = styled.form`
       flex-direction: column;
       align-items: flex-start;
       width: 80%;
-      input {
+      input,
+      textarea {
         font-size: 0.8rem;
         width: 100%;
       }
@@ -72,12 +79,12 @@ const StyledMainForm = styled.form`
 
     button {
       align-self: flex-end;
-      margin-top: auto;
+      margin-top: 2rem;
     }
   }
 
   @media only screen and (min-width: ${mdSize}) {
-    height: 40%;
+    min-height: 15rem;
     width: 40%;
   }
 `

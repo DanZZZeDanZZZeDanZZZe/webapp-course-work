@@ -4,14 +4,15 @@ import StyledMain from './Main'
 
 const StyledCenteredMain = styled(StyledMain)`
   display: flex;
-  justify-content: center;
-
+  flex-direction: column;
+  align-items: center;
   @media only screen and (max-width: ${lgSize}) {
     padding-top: 2rem;
+    justify-content: start;
   }
 
   @media only screen and (min-width: ${lgSize}) {
-    align-items: center;
+    justify-content: center;
   }
 `
 
