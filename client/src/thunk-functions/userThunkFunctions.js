@@ -28,4 +28,22 @@ const logoutUserThunk = (data) => (dispatch, getState) => {
   dispatch(logoutUser())
 }
 
-export { loginUserThunk, logoutUserThunk }
+const registrationUserThunk = (data) => async (dispatch, getState) => {
+  try {
+    const response = await fetch('/api/users/registration', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    })
+
+    if (!response.ok) {
+      throw new Error(response.message || 'Something went wrong')
+    }
+  } catch ({ message }) {
+    alert(message)
+  }
+}
+
+export { loginUserThunk, logoutUserThunk, registrationUserThunk }

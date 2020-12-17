@@ -12,6 +12,7 @@ import localStorageController from './local-storage-controller/localStorageContr
 import { loginUser } from './actions/userActions'
 import CalendarPage from './routes/CalendarPage'
 import NotePage from './routes/NotePage'
+import RegistrationPage from './routes/RegistrationPage'
 
 const AppRouter = () => {
   const dispatch = useDispatch(loginUser())
@@ -41,8 +42,12 @@ const AppRouter = () => {
         <Route path="/note">
           {!token ? <Redirect to="/authorization" /> : <NotePage />}
         </Route>
+        RegistrationPage
         <Route path="/authorization" exact>
           {token ? <Redirect to="/calendar" /> : <Authorization />}
+        </Route>
+        <Route path="/registration" exact>
+          {token ? <Redirect to="/calendar" /> : <RegistrationPage />}
         </Route>
       </Switch>
     </Router>
