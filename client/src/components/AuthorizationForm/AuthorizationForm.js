@@ -25,7 +25,7 @@ const AuthorizationForm = () => {
           ref={register}
         />
       </label>
-      <button>Login</button>
+      <button name="login">Login</button>
     </StyledMainForm>
   )
 }
