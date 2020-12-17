@@ -44,4 +44,23 @@ const createNewNote = ({ title, text, time }) => async (dispatch, getState) => {
   }
 }
 
-export { getUserNotes, createNewNote }
+const deleteNote = () => async (dispatch, getState) => {
+  const { user, calendar } = getState()
+  const id = calendar.currentNote.id
+  const headers = new Headers()
+  headers.set('Authorization', `Bearer ${user.token}`)
+
+  try {
+    const response = await fetch(`/api/notes/${id}`, {
+      method: 'DELETE',
+      headers,
+    })
+    if (!response.ok) {
+      throw new Error(response.message || 'Something went wrong')
+    }
+  } catch ({ message }) {
+    alert(message)
+  }
+}
+
+export { getUserNotes, createNewNote, deleteNote }

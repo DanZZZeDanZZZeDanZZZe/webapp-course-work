@@ -3,13 +3,13 @@ import { useForm } from 'react-hook-form'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import StyledMainForm from '../../styles/components/MainForm'
-import { createNewNote } from '../../thunk-functions/calendarThunkFunctions'
+import {
+  createNewNote,
+  deleteNote,
+} from '../../thunk-functions/calendarThunkFunctions'
 
 const NoteForm = () => {
-  const {
-    newNote,
-    currentNote: { date },
-  } = useSelector((state) => state.calendar)
+  const { newNote, currentNote } = useSelector((state) => state.calendar)
   const { register, handleSubmit } = useForm()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -17,6 +17,10 @@ const NoteForm = () => {
   const onSubmit = (data) => {
     history.push('/calendar')
     newNote && dispatch(createNewNote(data))
+  }
+
+  const onDelete = () => {
+    dispatch(deleteNote())
   }
 
   return (
@@ -36,6 +40,7 @@ const NoteForm = () => {
           <input name="time" type="time" ref={register} />
         </label>
         <button>Create</button>
+        {!newNote && <button onClick={() => onDelete()}>Delete</button>}
       </StyledMainForm>
     </>
   )

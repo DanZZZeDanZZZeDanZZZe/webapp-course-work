@@ -4,6 +4,7 @@ import { Redirect, useHistory } from 'react-router-dom'
 import { setNewCurrentNote } from '../../actions/calendarActions'
 import { StyledCalendarDay } from '../../styles/components/Calendar'
 import getDateStr from '../../utils/getDateStr'
+import CalendarNote from './CalendarNote'
 
 const CalendarDay = ({ date }) => {
   const dispatch = useDispatch()
@@ -26,10 +27,7 @@ const CalendarDay = ({ date }) => {
             return note
           })
           .map((note, index) => (
-            <div key={index}>
-              <span>{note.time}</span>
-              <span>{note.text}</span>
-            </div>
+            <CalendarNote key={index}>{note}</CalendarNote>
           ))}
       <button onClick={() => buttonClickHandler()}>Add</button>
     </StyledCalendarDay>

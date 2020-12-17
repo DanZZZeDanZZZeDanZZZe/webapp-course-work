@@ -74,9 +74,18 @@ const StyledCalendarDay = styled.div`
   }
 `
 
+const StyledCalendarNote = styled.div`
+  @media only screen and (max-width: ${smSize}) {
+  }
+
+  @media only screen and (min-width: ${mdSize}) {
+  }
+`
+
 export {
   StyledCalendar,
   StyledCalendarHeaders,
   StyledCalendarDays,
   StyledCalendarDay,
+  StyledCalendarNote,
 }
