@@ -1,11 +1,15 @@
 import React from 'react'
-import NoteForm from '../components/NoteForm/NoteForm'
+import { useSelector } from 'react-redux'
+import ExistingNoteForm from '../components/NoteForm/ExistingNoteForm'
+import NewNoteForm from '../components/NoteForm/NewNoteForm'
 import StyledCenteredMain from '../styles/components/CenteredMain'
 
 const NotePage = () => {
+  const { newNote } = useSelector((state) => state.calendar)
+
   return (
     <StyledCenteredMain>
-      <NoteForm></NoteForm>
+      {newNote ? <NewNoteForm /> : <ExistingNoteForm />}
     </StyledCenteredMain>
   )
 }

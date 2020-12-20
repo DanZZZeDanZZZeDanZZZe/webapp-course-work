@@ -1,46 +1,44 @@
 import React from 'react'
 import { useForm } from 'react-hook-form'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+
 import StyledMainForm from '../../styles/components/MainForm'
-import {
-  createNewNote,
-  deleteNote,
-} from '../../thunk-functions/calendarThunkFunctions'
 
-const NoteForm = () => {
-  const { newNote, currentNote } = useSelector((state) => state.calendar)
+const NoteForm = ({ title, onSubmit, note, children }) => {
   const { register, handleSubmit } = useForm()
-  const dispatch = useDispatch()
-  const history = useHistory()
-
-  const onSubmit = (data) => {
-    history.push('/calendar')
-    newNote && dispatch(createNewNote(data))
-  }
-
-  const onDelete = () => {
-    dispatch(deleteNote())
-  }
 
   return (
     <>
-      <h2>{newNote && 'New note'}</h2>
+      <h2>{title}</h2>
       <StyledMainForm onSubmit={handleSubmit(onSubmit)}>
         <label>
           Title:
-          <input name="title" type="title" placeholder="Title" ref={register} />
+          <input
+            name="title"
+            type="title"
+            placeholder="Title"
+            ref={register}
+            defaultValue={note && note.title}
+          />
         </label>
         <label>
           Text:
-          <textarea name="text" placeholder="Text" ref={register} />
+          <textarea
+            name="text"
+            placeholder="Text"
+            ref={register}
+            defaultValue={note && note.text}
+          />
         </label>
         <label>
           Time:
-          <input name="time" type="time" ref={register} />
+          <input
+            name="time"
+            type="time"
+            ref={register}
+            defaultValue={note && note.time}
+          />
         </label>
-        <button>Create</button>
-        {!newNote && <button onClick={() => onDelete()}>Delete</button>}
+        {children}
       </StyledMainForm>
     </>
   )

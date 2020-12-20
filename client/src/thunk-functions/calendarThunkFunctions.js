@@ -26,6 +26,7 @@ const getUserNotes = (start, end) => async (dispatch, getState) => {
 const createNewNote = ({ title, text, time }) => async (dispatch, getState) => {
   const { user, calendar } = getState()
   const date = calendar.currentNote.date
+
   const headers = new Headers()
   headers.set('Authorization', `Bearer ${user.token}`)
   headers.set('Content-Type', 'application/json')
@@ -35,6 +36,27 @@ const createNewNote = ({ title, text, time }) => async (dispatch, getState) => {
       method: 'POST',
       headers,
       body: JSON.stringify({ date: getDateFromStr(date, time), text, title }),
+    })
+    if (!response.ok) {
+      throw new Error(response.message || 'Something went wrong')
+    }
+  } catch ({ message }) {
+    alert(message)
+  }
+}
+
+const changeNote = ({ title, text, time }) => async (dispatch, getState) => {
+  const { user, calendar } = getState()
+  const { id } = calendar.currentNote
+  const headers = new Headers()
+  headers.set('Authorization', `Bearer ${user.token}`)
+  headers.set('Content-Type', 'application/json')
+
+  try {
+    const response = await fetch(`/api/notes/${id}`, {
+      method: 'PUT',
+      headers,
+      body: JSON.stringify({ text, title }),
     })
     if (!response.ok) {
       throw new Error(response.message || 'Something went wrong')
@@ -63,4 +85,4 @@ const deleteNote = () => async (dispatch, getState) => {
   }
 }
 
-export { getUserNotes, createNewNote, deleteNote }
+export { getUserNotes, createNewNote, deleteNote, changeNote }
