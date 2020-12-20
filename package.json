@@ -4,7 +4,9 @@
   "description": "course-work",
   "main": "server.js",
   "scripts": {
-    "start:dev": "NODE_ENV=development nodemon server.js",
+    "start:dev:client": "PORT=3001 npm run start --prefix client",
+    "start:dev:server": "NODE_ENV=development nodemon server.js",
+    "start:dev": "concurrently --raw \"npm run start:dev:*\"",
     "start:prod": "NODE_ENV=production nodemon server.js"
   },
   "keywords": [
@@ -25,7 +27,7 @@
     "morgan": "^1.10.0"
   },
   "devDependencies": {
-    "eslint": "^7.9.0",
+    "eslint": "^7.14.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",

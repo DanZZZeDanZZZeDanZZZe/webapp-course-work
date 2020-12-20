@@ -25,11 +25,22 @@ exports.getNotes = async (req, res) => {
 
     const { period } = req.query
     if (period) {
-      const format = (date) => new Date(...date.split('.'))
+      const format = (date) => {
+        return new Date(
+          ...date
+            .split('.')
+            .reverse()
+            .map((item, index) => {
+              if (index === 1) return item - 1
+              if (index === 2) return `${+item + 1}`
+              return item
+            })
+        )
+      }
       const [start, end] = period.split(':')
-
       findCondition.date = {
         $gte: format(start),
+
         $lt: format(end),
       }
     }
