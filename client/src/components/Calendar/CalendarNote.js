@@ -7,7 +7,7 @@ import { setCurrentNote } from '../../actions/calendarActions'
 const CalendarNote = ({ children }) => {
   const history = useHistory()
   const dispatch = useDispatch()
-  const { time, text, id } = children
+  const { time, title, id } = children
   const onClikHandler = () => {
     dispatch(setCurrentNote(id))
     history.push('/note')
@@ -16,7 +16,7 @@ const CalendarNote = ({ children }) => {
   return (
     <StyledCalendarNote onClick={onClikHandler}>
       <span>{time}</span>
-      <span>{text}</span>
+      <span>{title}</span>
     </StyledCalendarNote>
   )
 }
