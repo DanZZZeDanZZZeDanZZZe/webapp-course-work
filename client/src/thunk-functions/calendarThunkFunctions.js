@@ -1,4 +1,4 @@
-import { setNotes } from '../actions/calendarActions'
+import { setCalendarRelevance, setNotes } from '../actions/calendarActions'
 import getDateFromStr from '../utils/getDateFromStr'
 import getDateStr from '../utils/getDateStr'
 
@@ -40,6 +40,7 @@ const createNewNote = ({ title, text, time }) => async (dispatch, getState) => {
     if (!response.ok) {
       throw new Error(response.message || 'Something went wrong')
     }
+    dispatch(setCalendarRelevance(true))
   } catch ({ message }) {
     alert(message)
   }
@@ -61,6 +62,7 @@ const changeNote = ({ title, text, time }) => async (dispatch, getState) => {
     if (!response.ok) {
       throw new Error(response.message || 'Something went wrong')
     }
+    dispatch(setCalendarRelevance(true))
   } catch ({ message }) {
     alert(message)
   }
@@ -80,6 +82,7 @@ const deleteNote = () => async (dispatch, getState) => {
     if (!response.ok) {
       throw new Error(response.message || 'Something went wrong')
     }
+    dispatch(setCalendarRelevance(true))
   } catch ({ message }) {
     alert(message)
   }

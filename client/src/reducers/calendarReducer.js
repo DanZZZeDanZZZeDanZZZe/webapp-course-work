@@ -2,12 +2,14 @@ import {
   SET_CURRENT_NOTE,
   SET_NEW_CURRENT_NOTE,
   SET_NOTES,
+  SET_CALENDAR_RELEVANCE,
 } from '../actions/calendarActions'
 
 const initialState = {
   notes: null,
   newNote: false,
   currentNote: null,
+  desuetude: false,
 }
 
 export function calendarReducer(state = initialState, action) {
@@ -34,6 +36,11 @@ export function calendarReducer(state = initialState, action) {
         currentNote: {
           date: action.payload,
         },
+      }
+    case SET_CALENDAR_RELEVANCE:
+      return {
+        ...state,
+        desuetude: action.payload,
       }
     default:
       return state
