@@ -4,6 +4,7 @@
   "description": "course-work",
   "main": "server.js",
   "scripts": {
+    "test": "npm run test --prefix tests",
     "start:dev:client": "PORT=3001 npm run start --prefix client",
     "start:dev:server": "NODE_ENV=development nodemon server.js",
     "start:dev": "concurrently --raw \"npm run start:dev:*\"",

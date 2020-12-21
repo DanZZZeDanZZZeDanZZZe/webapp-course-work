@@ -11,6 +11,14 @@ Feature: Project features
     And press to login button
     Then I get to the calendar page by path "http://localhost:3001/calendar"
 
+  Scenario: Create new note
+    Given I click on the add button for today
+    When I add a title "Test"
+    And I add a text "hello"
+    And I add a time "20:30"
+    And I press button with text "Create"
+    Then I return to the page by path "http://localhost:3001/calendar"
+
   Scenario: Log out at application
     Given I go to the calendar page by path "http://localhost:3001/calendar"
     When click to header button with xpath "//button[text() = 'Log out']"
